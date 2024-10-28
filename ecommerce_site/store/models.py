@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 
@@ -21,3 +22,15 @@ class Order(models.Model):
 
     def __str__(self):
         return f"Order of {self.product.name}"
+
+    def save(self, *args, **kwargs):
+        # Ensure that the product has enough stock before creating the order
+        if self.quantity > self.product.stock:
+            raise ValidationError("Not enough stock available for this product.")
+        
+        # Call the original save method to save the order
+        super().save(*args, **kwargs)
+        
+        # Decrease the stock of the product
+        self.product.stock -= self.quantity
+        self.product.save()
