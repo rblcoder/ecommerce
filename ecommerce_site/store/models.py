@@ -32,5 +32,5 @@ class Order(models.Model):
         super().save(*args, **kwargs)
         
         # Decrease the stock of the product
-        self.product.stock -= self.quantity
+        self.product.stock = self.product.stock - self.quantity
         self.product.save()
