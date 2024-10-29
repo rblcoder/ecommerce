@@ -9,6 +9,8 @@ python manage.py createsuperuser
 
 python manage.py runserver
 
+python manage.py test store
+
 urls
 
 `http://127.0.0.1:8000/api/products/` product operations.
