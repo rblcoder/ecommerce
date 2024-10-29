@@ -14,9 +14,14 @@ python manage.py test store
 urls
 
 `http://127.0.0.1:8000/api/products/` product operations.
+
 `http://127.0.0.1:8000/api/orders/` order operations.
+
 'http://127.0.0.1:8000/api/register/' user registration
+
 'http://127.0.0.1:8000/api/login/' user login
 
 
 https://stackoverflow.com/questions/2619102/djangos-self-client-login-does-not-work-in-unit-tests
+
+
