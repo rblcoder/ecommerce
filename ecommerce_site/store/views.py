@@ -22,8 +22,8 @@ class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
     permission_classes = [permissions.IsAuthenticated]  # Restrict access to authenticated users
     
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)  # Optionally link the order to the user
+    # def perform_create(self, serializer):
+    #     serializer.save(user=self.request.user)  # Optionally link the order to the user
 
 class UserRegistrationView(generics.CreateAPIView):
     queryset = User.objects.all()
