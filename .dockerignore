@@ -1,0 +1,12 @@
+plaintext
+# .dockerignore
+
+__pycache__
+.dockerignore
+Dockerfile
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+*.sqlite3
