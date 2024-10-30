@@ -23,3 +23,15 @@ https://dev.to/koladev/setup-a-testing-environment-with-docker-and-pytest-django
 python manage.py test store
 
 docker-compose -f docker-compose.dev.yml exec -T web python ecommerce_site/manage.py test store
+
+Docker commands
+
+docker rm -vf $(docker ps -aq)
+
+To delete all the images,
+
+docker rmi -f $(docker images -aq)
+
+To delete all volumes
+
+docker volume rm $(docker volume ls -q)
