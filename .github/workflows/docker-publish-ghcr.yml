@@ -36,4 +36,6 @@ jobs:
       - name: Build and push the image
         run: |
           docker login --username rblcoder --password ${{ secrets.GH_TK }} ghcr.io
+          docker build . --tag ghcr.io/rblcoder/ecommerce:latest
+          docker push ghcr.io/rblcoder/ecommerce:latest
         
