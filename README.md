@@ -18,3 +18,8 @@ urls
 
 docker-compose up --build
 
+https://dev.to/koladev/setup-a-testing-environment-with-docker-and-pytest-django-postresql-schema-issue-2ffo
+
+python manage.py test store
+
+docker-compose -f docker-compose.dev.yml exec -T web python ecommerce_site/manage.py test store
