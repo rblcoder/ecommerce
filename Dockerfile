@@ -1,6 +1,10 @@
 
 # Use the official Python image from the Docker Hub
-FROM python:3.12-slim
+FROM python:3.12-bullseye
+
+RUN apt-get update && apt-get -y dist-upgrade
+
+RUN apt install -y netcat-openbsd
 
 # Set the working directory in the Docker container
 WORKDIR /app
@@ -17,18 +21,11 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire Django project into the container
-COPY ecommerce_site .
+COPY ecommerce_site /app
 
-# copy entrypoint.sh
-COPY ./entrypoint.sh .
-RUN sed -i 's/\r$//g' entrypoint.sh
-RUN chmod +x entrypoint.sh
-# RUN python manage.py migrate
-RUN ./entrypoint.sh
-# Expose the port on which the app will run
-# EXPOSE 8000
 
-# Command to run the Django application
-# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-RUN ls
-# ENTRYPOINT ["entrypoint.sh"]
+COPY ./entrypoint.sh /usr/local/bin
+RUN sed -i 's/\r$//g' /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["entrypoint.sh"]
