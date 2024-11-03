@@ -24,7 +24,7 @@ COPY ./entrypoint.sh .
 RUN sed -i 's/\r$//g' entrypoint.sh
 RUN chmod +x entrypoint.sh
 # RUN python manage.py migrate
-# RUN ./entrypoint.sh
+RUN ./entrypoint.sh
 # Expose the port on which the app will run
 # EXPOSE 8000
 
