@@ -35,3 +35,4 @@ docker-compose exec db psql --username=ecommerce_user --dbname=ecommerce
 
 docker inspect ecommerce_pg_data
 
+docker compose -f docker-compose.prod.yml up --build

@@ -1,10 +1,8 @@
 services:
   db:
     image: postgres:latest
-    environment:
-      POSTGRES_DB: ecommerce_prod
-      POSTGRES_USER: ecommerce_user
-      POSTGRES_PASSWORD: ecommerce_password
+    env_file:
+      - ./.env.prod.db
     volumes:
       - pg_data:/var/lib/postgresql/data
 
@@ -15,13 +13,16 @@ services:
         - -c
         - | 
            python ecommerce_site/manage.py migrate 
-           gunicorn ecommerce_site.wsgi:application --bind 0.0.0.0:8000 --chdir ecommerce_site
+           python ecommerce_site/manage.py runserver 0.0.0.0:8000
+          #  gunicorn ecommerce_site.wsgi:application --bind 0.0.0.0:8000 --chdir ecommerce_site
     volumes:
       - .:/app
     ports:
       - 8000:8000
     env_file:
-      - ./.env.dev
+      - ./.env.prod
+    depends_on:
+      - db
 
 volumes:
   pg_data:

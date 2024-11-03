@@ -23,11 +23,12 @@ COPY ecommerce_site .
 COPY ./entrypoint.sh .
 RUN sed -i 's/\r$//g' entrypoint.sh
 RUN chmod +x entrypoint.sh
-
+# RUN python manage.py migrate
+# RUN ./entrypoint.sh
 # Expose the port on which the app will run
 # EXPOSE 8000
 
 # Command to run the Django application
 # CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
-
-# ENTRYPOINT ["./entrypoint.sh"]
+RUN ls
+# ENTRYPOINT ["entrypoint.sh"]
